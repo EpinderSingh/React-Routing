@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 
@@ -15,7 +15,7 @@ class Blog extends Component {
             <ul>
               <li>
                 <NavLink to="/" exact>
-                  Home
+                  Posts
                 </NavLink>
               </li>
               <li>
@@ -26,6 +26,7 @@ class Blog extends Component {
                     search: '?quick-submit=true',
                   }}
                 >
+                  {' '}
                   New post
                 </NavLink>
               </li>
@@ -34,8 +35,10 @@ class Blog extends Component {
         </header>
         {/* <Route path="/" exact render={() => <h1>Home</h1>} /> */}
         <Route path="/" exact component={Posts} />
-        <Route exact path="/new-post" component={NewPost} />
-        <Route path="/:id" exact component={FullPost} />
+        <Switch>
+          <Route exact path="/new-post" component={NewPost} />
+          <Route path="/:id" exact component={FullPost} />
+        </Switch>
       </div>
     );
   }
